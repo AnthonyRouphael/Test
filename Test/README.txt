@@ -9,5 +9,5 @@ How to use the project:
 -----------------------------
 -The project have two files (test.html) & (test.css).
 -Download this 2 files on desktop.
--to see the result of the code  right click on test.html file in test folder ->open with ->google chrome.
+-to see the result of the code  right click on test.html file  ->open with ->google chrome.
 (test.css should be downloaded on desktop).
