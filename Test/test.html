@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="test.css">
+            <title>Search Box</title>
+        </head>
+        <body>
+
+                <input type="text" id="search-box" placeholder="Type keywords or phrases">
+                <div id="search-text"></div>
+                <div id="search-results"></div>
+
+                <script>
+                    const articles = [
+                        "With all the new properties related to CSS Grid Layout,",
+                        "one of the distinctions that always confused me was the difference between the grid-template-* and grid-auto-*",
+                        " properties. Specifically the difference between grid-template-rows/columns and grid-auto-rows/columns.",
+                        "Although I knew they were to do with the explicit and implicit grid systems,",
+                        "at face value they seemed to be doing almost the same thing.",
+                        "In actual fact, they have little in common and are used to achieve different things."
+                    ];
+
+                    const searchInput = document.getElementById('search-box');
+                    const searchInfo = document.getElementById('search-text');
+                    const searchResults = document.getElementById('search-results');
+
+                    function performSearch()
+                    {
+                        const searchTerm = searchInput.value.toLowerCase();
+                        let totalResults = 0;
+                        searchResults.innerHTML = '';
+
+                        articles.forEach(article => {
+                            const index = article.toLowerCase().indexOf(searchTerm);
+                            if (index !== -1)
+                            {
+                                totalResults++;
+                                const highlightedText = article.substring(0, index) + 
+                                    '<span class="highlight">' + article.substring(index, index + searchTerm.length) + '</span>' +
+                                    article.substring(index + searchTerm.length);
+                                searchResults.innerHTML += '<div>' + highlightedText + '</div>';
+                            }
+                        });
+
+                        if (totalResults > 0 && searchTerm.trim() !== '')
+                            searchInfo.textContent = totalResults + ' posts were found';
+                        else
+                            searchInfo.textContent = '';
+                    }
+                    performSearch();
+                    searchInput.addEventListener('input', performSearch);
+                </script>
+        </body>
+</html>
